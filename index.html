@@ -171,7 +171,7 @@ const apps = [
     developer: "Saksham",
     rating: 5,
     description: "An advanced intelligent assistant for productivity, creativity, and learning — built to help you explore AI seamlessly.",
-    icon: "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/icons/saksham-ai.png",
+    icon: "https://raw.githubusercontent.com/saksham6062/AI-by-Saksham/main/assets/icons/saksham-ai.png",
     screenshots: [
       "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham1.png",
       "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham2.png",
@@ -213,7 +213,7 @@ function renderApps() {
         </div>
       </div>
       <p class="description">${app.description}</p>
-      <a href="${app.download}" target="_blank" class="download-btn">Download</a>
+      <a href="${app.download}" target="" class="download-btn">Download</a>
     `;
     card.addEventListener("click", (e) => {
       if (!e.target.classList.contains("download-btn")) openPopup(app);
