@@ -68,11 +68,11 @@ header p { margin-top:0; opacity:0.9;}
   text-decoration:none;
   font-weight:600;
   transition:all 0.3s;
+  cursor:pointer;
 }
 .app-card a:hover { background:#9d5eff; transform: translateY(-3px); box-shadow:0 8px 20px rgba(124,58,237,0.5); }
 
 footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
-
 </style>
 </head>
 <body>
@@ -87,28 +87,28 @@ footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
   <div class="app-card">
     <h3>Saksham AI</h3>
     <p>Custom AI creations and experiments from Saksham Intelligence.</p>
-    <a href="app/saksham-ai.apk" download>Download APK</a>
+    <a href="app/saksham-ai.apk" download="Saksham-AI.apk">Download APK</a>
   </div>
 
   <!-- Aura AI Studio -->
   <div class="app-card">
     <h3>Aura AI Studio</h3>
     <p>The official Aura AI app. Always updated via Median.</p>
-    <a href="app/aura-ai.apk" download>Download APK</a>
+    <a href="app/aura-ai.apk" download="Aura-AI.apk">Download APK</a>
   </div>
 
   <!-- App Store -->
   <div class="app-card">
     <h3>App Store</h3>
     <p>The Saksham App Store app itself — download and browse other apps.</p>
-    <a href="app/app-store.apk" download>Download APK</a>
+    <a href="app/app-store.apk" download="App-Store.apk">Download APK</a>
   </div>
 
   <!-- Saksham Intelligence -->
   <div class="app-card">
     <h3>Saksham Intelligence</h3>
     <p>The super-app combining all services and AI tools in a single platform.</p>
-    <a href="app/saksham-intelligence.apk" download>Download APK</a>
+    <a href="app/saksham-intelligence.apk" download="Saksham-Intelligence.apk">Download APK</a>
   </div>
 </div>
 
@@ -117,11 +117,28 @@ footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
 </footer>
 
 <script>
+// Button glow effect
 const buttons = document.querySelectorAll('.app-card a');
 buttons.forEach(btn=>{
   setInterval(()=>{
     btn.style.boxShadow=`0 0 ${Math.random()*20+10}px rgba(124,58,237,0.6)`;
   }, 1000);
+});
+
+// Force download fallback for browsers that ignore "download" attribute
+document.querySelectorAll('.app-card a[download]').forEach(link=>{
+  link.addEventListener('click', e=>{
+    const url = link.href;
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => {
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = link.getAttribute('download') || url.split('/').pop();
+        a.click();
+      });
+    e.preventDefault();
+  });
 });
 </script>
 
