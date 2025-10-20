@@ -167,11 +167,11 @@
 <script>
 const apps = [
   {
-    name: "Saksham AI",
-    developer: "Saksham",
+    name: "Saksham AI Studio",
+    developer: "Saksham Intelligence",
     rating: 5,
     description: "An advanced intelligent assistant for productivity, creativity, and learning — built to help you explore AI seamlessly.",
-    icon: "https://raw.githubusercontent.com/saksham6062/AI-by-Saksham/main/assets/icons/saksham-ai.png",
+    icon: "https://saksham6062.github.io/Ai-by-Saksham/favicon.png",
     screenshots: [
       "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham1.png",
       "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham2.png",
@@ -181,7 +181,7 @@ const apps = [
   },
   {
     name: "Aura AI Studio",
-    developer: "Saksham",
+    developer: "Saksham Intelligence ",
     rating: 4.8,
     description: "A creative AI platform that connects all your AI tools — design, chat, and build smarter apps in one place.",
     icon: "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/icons/aura-ai.png",
@@ -213,7 +213,7 @@ function renderApps() {
         </div>
       </div>
       <p class="description">${app.description}</p>
-      <a href="${app.download}" target="" class="download-btn">Download</a>
+      <a href="${app.download}" class="download-btn">Download</a>
     `;
     card.addEventListener("click", (e) => {
       if (!e.target.classList.contains("download-btn")) openPopup(app);
