@@ -3,140 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saksham App Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>My App Store</title>
 <style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:'Inter', sans-serif; background:#0d1117; color:#e6eef8; min-height:100vh; overflow-x:hidden;}
-
-#hero {
-  text-align:center;
-  padding:80px 20px 40px 20px;
-  opacity:0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
+/* ---------- GENERAL ---------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
-#hero.visible { opacity:1; transform:translateY(0); }
-
-#hero img { width:120px; height:120px; margin-bottom:20px; }
-#hero h1 {
-  font-size:40px;
-  background: linear-gradient(270deg,#7c3aed,#56ccf2,#ff6ec7,#7c3aed);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 10s ease infinite;
+header {
+  background-color: #7c3aed;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
-#hero p { font-size:1.2em; margin-top:10px; color:rgba(255,255,255,0.8); }
-
-@keyframes gradientShift {0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;}}
-
-.apps-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px; max-width:1000px; margin:40px auto; padding:0 20px;
+header input {
+  margin-top: 10px;
+  padding: 8px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+  border: none;
+}
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
 }
 
+/* ---------- APP CARDS ---------- */
 .app-card {
-  background: rgba(124,58,237,0.2);
-  border-radius:16px; text-align:center; padding:20px;
-  transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow:hidden;
+  background-color: white;
+  width: 240px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.app-card:hover {
+  transform: scale(1.05);
+}
+.app-card img.icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.app-card h2 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+.app-card a.download-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #7c3aed;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.app-card a.download-btn:hover {
+  background-color: #5b21b6;
+}
+.app-card p {
+  font-size: 14px;
+  margin: 10px 0;
+}
+.screenshots {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.screenshots img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.screenshots img:hover {
+  transform: scale(1.03);
 }
 
-.app-card::before {
-  content:'';
-  position:absolute; top:-50%; left:-50%; width:200%; height:200%;
-  background: linear-gradient(45deg, rgba(124,58,237,0.15), rgba(37,99,235,0.15), rgba(124,58,237,0.15));
-  transform: rotate(45deg); transition: all 0.5s ease; opacity:0; animation: moveGlow 6s linear infinite;
+/* ---------- MODAL POPUP ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
 }
-
-@keyframes moveGlow { 0% {transform: rotate(0deg) translateX(0);} 50% {transform: rotate(30deg) translateX(10px);} 100% {transform: rotate(0deg) translateX(0);} }
-.app-card:hover::before { opacity:1; }
-.app-card:hover { transform: translateY(-5px); box-shadow:0 10px 30px rgba(124,58,237,0.4); }
-
-.app-card h3 { margin-bottom:10px; }
-.app-card p { font-size:0.95em; margin-bottom:15px; }
-.app-card button {
-  display:inline-block; padding:10px 20px; background:#7c3aed; color:#fff;
-  border:none; border-radius:50px; font-weight:600; cursor:pointer; transition:all 0.3s;
+.modal img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
-.app-card button:hover { background:#9d5eff; transform: translateY(-3px); box-shadow:0 8px 20px rgba(124,58,237,0.5); }
-
-#error-msg {
-  position:fixed; top:20px; left:50%; transform:translateX(-50%);
-  background:#ff4c4c; color:#fff; padding:12px 20px; border-radius:8px;
-  display:none; z-index:9999; font-weight:600;
+.modal span {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
 }
-
-footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
 </style>
 </head>
 <body>
 
-<div id="hero">
-  <img src="favicon.png" alt="Saksham App Store Logo">
-  <h1>Saksham App Store</h1>
-  <p>Download all Saksham apps manually hosted via GitHub</p>
+<header>
+  <h1>My App Store</h1>
+  <input type="text" id="search" placeholder="Search apps...">
+</header>
+
+<main id="app-list">
+  <!-- App cards load here -->
+</main>
+
+<!-- Modal for screenshot preview -->
+<div id="modal" class="modal">
+  <span id="closeModal">&times;</span>
+  <img id="modalImage" src="" alt="Screenshot">
 </div>
-
-<div class="apps-grid">
-  <div class="app-card">
-    <h3>Saksham AI</h3>
-    <p>Custom AI creations and experiments from Saksham Intelligence.</p>
-    <button data-link="app/saksham-ai.apk">Download APK</button>
-  </div>
-
-  <div class="app-card">
-    <h3>Aura AI Studio</h3>
-    <p>The official Aura AI app. Always updated via Median.</p>
-    <button data-link="app/aura-ai.apk">Download APK</button>
-  </div>
-
-  <div class="app-card">
-    <h3>App Store</h3>
-    <p>The Saksham App Store app itself — download and browse other apps.</p>
-    <button data-link="app/app-store.apk">Download APK</button>
-  </div>
-
-  <div class="app-card">
-    <h3>Saksham Intelligence</h3>
-    <p>The super-app combining all services and AI tools in a single platform.</p>
-    <button data-link="app/saksham-intelligence.apk">Download APK</button>
-  </div>
-</div>
-
-<div id="error-msg">Error: File not found!</div>
-
-<footer>© 2025 Saksham Intelligence | Made with ❤️</footer>
 
 <script>
-// Fade-in hero
-window.addEventListener('load', () => {
-  document.getElementById('hero').classList.add('visible');
-});
+// 🔗 URL of your GitHub apps.json file
+const appsJSONUrl = "https://raw.githubusercontent.com/yourusername/yourrepo/main/apps.json";
+const appList = document.getElementById('app-list');
 
-// Button click handler with error check
-document.querySelectorAll('.app-card button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const url = btn.dataset.link;
-    fetch(url, { method: 'HEAD' }) // check if file exists
-      .then(res => {
-        if (res.ok) {
-          window.location.href = url; // go to file / download
-        } else {
-          showError();
+// Load app data
+fetch(appsJSONUrl)
+  .then(res => res.json())
+  .then(apps => {
+    function displayApps(filter = "") {
+      appList.innerHTML = "";
+      apps.forEach(app => {
+        if (app.name.toLowerCase().includes(filter.toLowerCase())) {
+          const card = document.createElement('div');
+          card.className = 'app-card';
+
+          // Screenshots
+          let screenshotsHTML = "";
+          if (app.screenshots && app.screenshots.length > 0) {
+            screenshotsHTML = `
+              <div class="screenshots">
+                ${app.screenshots.map(src => `<img src="${src}" alt="${app.name} Screenshot" class="screenshot">`).join('')}
+              </div>`;
+          }
+
+          // Card content
+          card.innerHTML = `
+            <img class="icon" src="${app.icon}" alt="${app.name} Icon">
+            <h2>${app.name}</h2>
+            <a class="download-btn" href="${app.download}" target="_blank">Download</a>
+            <p>${app.description}</p>
+            ${screenshotsHTML}
+          `;
+          appList.appendChild(card);
         }
-      })
-      .catch(showError);
-  });
-});
+      });
 
-// Show error message
-function showError() {
-  const msg = document.getElementById('error-msg');
-  msg.style.display = 'block';
-  setTimeout(() => msg.style.display = 'none', 2500);
+      // Enable modal popup for all screenshots
+      document.querySelectorAll('.screenshot').forEach(img => {
+        img.addEventListener('click', () => openModal(img.src));
+      });
+    }
+
+    displayApps();
+
+    document.getElementById('search').addEventListener('input', e => {
+      displayApps(e.target.value);
+    });
+  })
+  .catch(err => {
+    appList.innerHTML = "<p style='text-align:center;color:red;'>❌ Failed to load apps. Check your JSON URL.</p>";
+  });
+
+// ---------- MODAL LOGIC ----------
+const modal = document.getElementById('modal');
+const modalImage = document.getElementById('modalImage');
+const closeModal = document.getElementById('closeModal');
+
+function openModal(src) {
+  modal.style.display = 'flex';
+  modalImage.src = src;
 }
+closeModal.onclick = () => modal.style.display = 'none';
+window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
 </script>
+
 </body>
 </html>
