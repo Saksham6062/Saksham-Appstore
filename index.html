@@ -73,6 +73,7 @@ header p { margin-top:0; opacity:0.9;}
 .app-card a:hover { background:#9d5eff; transform: translateY(-3px); box-shadow:0 8px 20px rgba(124,58,237,0.5); }
 
 footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
+
 </style>
 </head>
 <body>
@@ -117,28 +118,12 @@ footer { text-align:center; padding:20px; font-size:12px; opacity:0.6; }
 </footer>
 
 <script>
-// Button glow effect
+// Only glow effect, no click interception
 const buttons = document.querySelectorAll('.app-card a');
 buttons.forEach(btn=>{
   setInterval(()=>{
     btn.style.boxShadow=`0 0 ${Math.random()*20+10}px rgba(124,58,237,0.6)`;
   }, 1000);
-});
-
-// Force download fallback for browsers that ignore "download" attribute
-document.querySelectorAll('.app-card a[download]').forEach(link=>{
-  link.addEventListener('click', e=>{
-    const url = link.href;
-    fetch(url)
-      .then(res => res.blob())
-      .then(blob => {
-        const a = document.createElement('a');
-        a.href = window.URL.createObjectURL(blob);
-        a.download = link.getAttribute('download') || url.split('/').pop();
-        a.click();
-      });
-    e.preventDefault();
-  });
 });
 </script>
 
