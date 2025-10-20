@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Saksham AI",
+    "description": "An advanced intelligent assistant for productivity, creativity, and learning — built to help you explore AI seamlessly.",
+    "icon": "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/icons/saksham-ai.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham1.png",
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham2.png",
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/saksham3.png"
+    ],
+    "download": "https://saksham6062.github.io/app/saksham-ai.apk"
+  },
+  {
+    "name": "Aura AI Studio",
+    "description": "A creative AI platform that connects all your AI tools — design, chat, and build smarter apps in one place.",
+    "icon": "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/icons/aura-ai.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/aura1.png",
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/aura2.png",
+      "https://raw.githubusercontent.com/saksham6062/Aura-AI/main/assets/screenshots/aura3.png"
+    ],
+    "download": "https://saksham6062.github.io/app/aura-ai.apk"
+  }
+]
