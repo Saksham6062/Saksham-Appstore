@@ -9,6 +9,27 @@
 <link rel="manifest" href="/Saksham-Appstore/manifest.json">
 
 <style>
+  /* Splash Screen */
+#splash {
+  position: fixed;         /* cover full screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);  /* background color */
+  display: flex;
+  justify-content: center; /* center content horizontally */
+  align-items: center;     /* center content vertically */
+  z-index: 9999;           /* appear on top of all elements */
+  flex-direction: column;  /* stack logo and text */
+  color: white;            /* text color */
+  font-size: 1.4rem;
+}
+
+#splash img {
+  width: 120px;            /* logo size */
+  margin-bottom: 1rem;     /* spacing below logo */
+}
   :root {
     --accent: #7c3aed;
     --bg: #f9fafb;
@@ -154,6 +175,11 @@
 </head>
 
 <body>
+  <!-- Splash Screen -->
+<div id="splash">
+  <img src="favicon.png" alt="Saksham Appstore">
+  <div>Saksham Intelligence</div>
+</div>
   <header>Saksham Appstore</header>
   <main id="app-list"></main>
 
@@ -274,6 +300,13 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log('✅ Service Worker registered successfully'))
     .catch((err) => console.error('❌ Service Worker registration failed:', err));
 }
+    window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+  splash.style.transition = "opacity 0.5s";  // fade effect
+  splash.style.opacity = 0;                  // start fade out
+  setTimeout(() => splash.style.display = "none", 500); // remove from DOM after fade
+});
+
 </script>
 </body>
 </html>
