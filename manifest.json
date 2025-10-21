@@ -1,6 +1,6 @@
 {
   "name": "Saksham Appstore",
-  "short_name": "Appstore",
+  "short_name": "Saksham Appstore",
   "description": "Saksham Appstore — Explore and download apps by Saksham Intelligence. Works online and offline as a PWA.",
   "start_url": "/Saksham-Appstore/index.html",
   "scope": "/Saksham-Appstore/",
