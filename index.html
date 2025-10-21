@@ -302,9 +302,9 @@ if ('serviceWorker' in navigator) {
 }
     window.addEventListener("load", () => {
   const splash = document.getElementById("splash");
-  splash.style.transition = "opacity 2.5s";  // fade effect
+  splash.style.transition = "opacity 4s";  // fade effect
   splash.style.opacity = 0;                  // start fade out
-  setTimeout(() => splash.style.display = "none", 2500); // remove from DOM after fade
+  setTimeout(() => splash.style.display = "none", 400); // remove from DOM after fade
 });
 
 </script>
