@@ -252,5 +252,13 @@ window.onclick = (e) => {
 
 renderApps();
 </script>
+  <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/Saksham-Appstore/sw.js')
+    .then(() => console.log('✅ Service Worker registered successfully'))
+    .catch((err) => console.error('❌ Service Worker registration failed:', err));
+}
+</script>
 </body>
 </html>
